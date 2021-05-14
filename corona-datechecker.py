@@ -4,7 +4,7 @@ import re
 import hashlib
 import time
 
-def getAvailabilityString():
+def get_availability_string():
     url="https://www.gef.be.ch/gef/de/index/Corona/Corona/corona_impfung_bern.html"
 
     page=requests.get(url).content
@@ -20,12 +20,12 @@ def getAvailabilityString():
         result = result + str(x.find_next_sibling('p'))
     return result
 
-result = getAvailabilityString()
+result = get_availability_string()
 initialString = hashlib.sha224(result.encode()).hexdigest()
 print('Initial text: ' + result)
 while True:
     time.sleep(600)
-    result = getAvailabilityString()
+    result = get_availability_string()
     if initialString != hashlib.sha224(result.encode()).hexdigest():
         print('Availability has changed: ' + result)
         initialString = hashlib.sha224(result.encode()).hexdigest()
