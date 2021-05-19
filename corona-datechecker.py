@@ -34,6 +34,7 @@ async def send_message(message, client):
             "body": message
         }
     )
+    await client.logout()
 
 async def main():
     result = get_availability_string()
