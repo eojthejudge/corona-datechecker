@@ -36,13 +36,13 @@ async def send_message(message, client):
     )
 
 async def main():
-    result = get_availability_string() + "first"
+    result = get_availability_string()
     initial_string = hashlib.sha224(result.encode()).hexdigest()
     client = AsyncClient("https://matrix.fortress.ch", "@coronabot:matrix.fortress.ch")
     print('Initial text: ' + result)
     await send_message('Initial text: ' + result, client)
     while True:
-        await asyncio.sleep(60)
+        await asyncio.sleep(600)
         result = get_availability_string()
         if initial_string != hashlib.sha224(result.encode()).hexdigest():
             print('Availability has changed: ' + result)
